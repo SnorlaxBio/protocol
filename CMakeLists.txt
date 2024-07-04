@@ -69,16 +69,15 @@ target_compile_options(snorlax-protocol-transmission-control PUBLIC "-ffile-pref
 add_library(snorlax-protocol-user-datagram ${SNORLAX_PROTOCOL_USER_DATAGRAM_SOURCE} ${SNORLAX_PROTOCOL_USER_DATAGRAM_HEADER})
 target_compile_options(snorlax-protocol-user-datagram PUBLIC "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
 
-add_library(snorlax-protocol ${SNORLAX_PROTOCOL_SOURCE} ${SNORLAX_PROTOCOL_HEADER})
+add_library(snorlax-protocol STATIC ${SNORLAX_PROTOCOL_SOURCE} ${SNORLAX_PROTOCOL_HEADER}
+                                    $<TARGET_OBJECTS:snorlax-protocol-user-datagram>
+                                    $<TARGET_OBJECTS:snorlax-protocol-transmission-control>
+                                    $<TARGET_OBJECTS:snorlax-protocol-internet-control-message>
+                                    $<TARGET_OBJECTS:snorlax-protocol-internet-version6>
+                                    $<TARGET_OBJECTS:snorlax-protocol-internet-version4>
+                                    $<TARGET_OBJECTS:snorlax-protocol-internet>
+                                    $<TARGET_OBJECTS:snorlax-protocol-ethernet>)
 target_compile_options(snorlax-protocol PUBLIC "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
-target_link_libraries(snorlax-protocol    snorlax-protocol-user-datagram
-                                                snorlax-protocol-transmission-control
-                                                snorlax-protocol-internet-control-message
-                                                snorlax-protocol-internet-version6
-                                                snorlax-protocol-internet-version4
-                                                snorlax-protocol-internet
-                                                snorlax-protocol-ethernet)
-
 
 install(TARGETS snorlax-protocol ARCHIVE DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
 install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/src/ DESTINATION "${CMAKE_INSTALL_PREFIX}/include"
