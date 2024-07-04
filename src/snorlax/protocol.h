@@ -12,13 +12,13 @@
 
 #include <snorlax.h>
 
-#include <snorlax/user-datagram.h>
-#include <snorlax/transmission-control.h>
-#include <snorlax/internet.h>
-#include <snorlax/ethernet.h>
-#include <snorlax/address-resolution.h>
-#include <snorlax/internet/version4.h>
-#include <snorlax/internet/version6.h>
-#include <snorlax/internet/control-message.h>
+#include <snorlax/protocol/user-datagram.h>
+#include <snorlax/protocol/transmission-control.h>
+#include <snorlax/protocol/internet.h>
+#include <snorlax/protocol/ethernet.h>
+#include <snorlax/protocol/address-resolution.h>
+#include <snorlax/protocol/internet/version4.h>
+#include <snorlax/protocol/internet/version6.h>
+#include <snorlax/protocol/internet/control-message.h>
 
 #endif // __SNORLAX__PROTOCOL__H__
