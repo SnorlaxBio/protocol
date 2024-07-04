@@ -3,7 +3,7 @@
 #include "user-datagram.h"
 
 #ifndef   RELEASE
-extern void snorlax_protocol_user_datagram_debug(FILE * stream, const internet_protocol_t * internet, const uint8_t * segment) {
+extern void user_datagram_protocol_debug(FILE * stream, const internet_protocol_t * internet, const uint8_t * segment) {
     user_datagram_protocol_t * udp = (user_datagram_protocol_t *)(segment);
 
     fprintf(stream, "| user datagram ");

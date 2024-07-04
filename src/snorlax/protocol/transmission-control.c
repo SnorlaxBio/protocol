@@ -3,7 +3,7 @@
 #include "transmission-control.h"
 
 #ifndef   RELEASE
-extern void snorlax_protocol_transmission_control_debug(FILE * stream, const internet_protocol_t * internet, const uint8_t * segment) {
+extern void transmission_control_protocol_debug(FILE * stream, const internet_protocol_t * internet, const uint8_t * segment) {
     
     transmission_control_protocol_t * header = (transmission_control_protocol_t *) segment;
     fprintf(stream, "| transmission control ");
