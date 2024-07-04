@@ -71,15 +71,16 @@ target_compile_options(snorlax-protocol-user-datagram PUBLIC "-ffile-prefix-map=
 
 add_library(snorlax-protocol ${SNORLAX_PROTOCOL_SOURCE} ${SNORLAX_PROTOCOL_HEADER})
 target_compile_options(snorlax-protocol PUBLIC "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
-target_link_libraries(snorlax-protocol      snorlax-protocol-user-datagram
-                                            snorlax-protocol-transmission-control
-                                            snorlax-protocol-internet-control-message
-                                            snorlax-protocol-internet-version6
-                                            snorlax-protocol-internet-version4
-                                            snorlax-protocol-internet
-                                            snorlax-protocol-ethernet)
+target_link_libraries(snorlax-protocol    snorlax-protocol-user-datagram
+                                                snorlax-protocol-transmission-control
+                                                snorlax-protocol-internet-control-message
+                                                snorlax-protocol-internet-version6
+                                                snorlax-protocol-internet-version4
+                                                snorlax-protocol-internet
+                                                snorlax-protocol-ethernet)
+
 
 install(TARGETS snorlax-protocol ARCHIVE DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
 install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/src/ DESTINATION "${CMAKE_INSTALL_PREFIX}/include"
-                    FILES_MATCHING PATTERN "*.h")
+                  FILES_MATCHING PATTERN "*.h")
 
