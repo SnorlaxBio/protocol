@@ -79,3 +79,7 @@ target_link_libraries(snorlax-protocol      snorlax-protocol-user-datagram
                                             snorlax-protocol-internet
                                             snorlax-protocol-ethernet)
 
+install(TARGETS snorlax-std ARCHIVE DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
+install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/src/ DESTINATION "${CMAKE_INSTALL_PREFIX}/include"
+                    FILES_MATCHING PATTERN "*.h")
+
