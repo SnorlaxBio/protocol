@@ -47,6 +47,8 @@ set(SNORLAX_PROTOCOL_TRANSMISSION_CONTROL_SOURCE        src/snorlax/protocol/tra
 set(SNORLAX_PROTOCOL_TRANSMISSION_CONTROL_HEADER        src/snorlax/protocol/transmission-control.h)
 set(SNORLAX_PROTOCOL_USER_DATAGRAM_SOURCE               src/snorlax/protocol/user-datagram.c)
 set(SNORLAX_PROTOCOL_USER_DATAGRAM_HEADER               src/snorlax/protocol/user-datagram.h)
+set(SNORLAX_PROTOCOL_ADDRESS_RESOLUTION_SOURCE          src/snorlax/protocol/address-resolution.c)
+set(SNORLAX_PROTOCOL_ADDRESS_RESOLUTION_HEADER          src/snorlax/protocol/address-resolution.h)
 
 add_library(snorlax-protocol-ethernet ${SNORLAX_PROTOCOL_ETHERNET_SOURCE} ${SNORLAX_PROTOCOL_ETHERNET_HEADER})
 target_compile_options(snorlax-protocol-ethernet PUBLIC "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
@@ -69,6 +71,10 @@ target_compile_options(snorlax-protocol-transmission-control PUBLIC "-ffile-pref
 add_library(snorlax-protocol-user-datagram ${SNORLAX_PROTOCOL_USER_DATAGRAM_SOURCE} ${SNORLAX_PROTOCOL_USER_DATAGRAM_HEADER})
 target_compile_options(snorlax-protocol-user-datagram PUBLIC "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
 
+add_library(snorlax-protocol-address-resolution ${SNORLAX_PROTOCOL_ADDRESS_RESOLUTION_SOURCE} ${SNORLAX_PROTOCOL_ADDRESS_RESOLUTION_HEADER})
+target_compile_options(snorlax-protocol-address-resolution PUBLIC "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
+
+
 add_library(snorlax-protocol STATIC ${SNORLAX_PROTOCOL_SOURCE} ${SNORLAX_PROTOCOL_HEADER}
                                     $<TARGET_OBJECTS:snorlax-protocol-user-datagram>
                                     $<TARGET_OBJECTS:snorlax-protocol-transmission-control>
@@ -76,6 +82,7 @@ add_library(snorlax-protocol STATIC ${SNORLAX_PROTOCOL_SOURCE} ${SNORLAX_PROTOCO
                                     $<TARGET_OBJECTS:snorlax-protocol-internet-version6>
                                     $<TARGET_OBJECTS:snorlax-protocol-internet-version4>
                                     $<TARGET_OBJECTS:snorlax-protocol-internet>
+                                    $<TARGET_OBJECTS:snorlax-protocol-address-resolution>
                                     $<TARGET_OBJECTS:snorlax-protocol-ethernet>)
 target_compile_options(snorlax-protocol PUBLIC "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
 
