@@ -46,7 +46,7 @@ extern void address_resolution_protocol_debug(FILE * stream, const uint8_t * dat
     }
 
     if(type == protocol_ethernet_type_internet_protocol_version4) {
-        fprintf(stream, "| %15s ", inet_ntoa((struct in_addr) { .s_addr = uint32of(datagram, offset) }));
+        fprintf(stream, "| %15s ", inet_ntoa((struct in_addr) { .s_addr = uint32_of(&datagram[offset]) }));
         offset = offset + protocol->length.protocol;
     } else {
         snorlaxdbg(true, false, "critical", "not implemented => %d", type);
