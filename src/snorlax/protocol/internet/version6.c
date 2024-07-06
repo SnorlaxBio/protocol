@@ -34,6 +34,6 @@ extern void internet_protocol_version6_debug(FILE * stream, const uint8_t * data
                                                                   ntohs(internet->destination[7]));
     fprintf(stream, "|\n");
 
-    snorlaxdbg(true, false, "check", "");
+    snorlaxdbg(false, true, "check", "");
 }
 #endif // RELEASE
