@@ -25,8 +25,9 @@ struct internet_protocol_version6 {
     uint16_t destination[8];
 };
 
-#define internet_protocol_version6_traffic_class_get(prefix)          (((prefix) & 0x0FF00000u) >> 20u)
-#define internet_protocol_version6_flow_label_get(prefix)             ((prefix) & 0x000FFFFFu)
+#define internet_protocol_version6_traffic_class_get(prefix)        (((prefix) & 0x0FF00000u) >> 20u)
+#define internet_protocol_version6_flow_label_get(prefix)           ((prefix) & 0x000FFFFFu)
+#define internet_protocol_version6_length_get(datagram)             ntohs((internet_protocol_version6_t *)(datagram)->length)
 
 #ifndef   RELEASE
 extern void internet_protocol_version6_debug(FILE * stream, const uint8_t * datagram);
