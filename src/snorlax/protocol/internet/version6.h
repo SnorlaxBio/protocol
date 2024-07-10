@@ -13,8 +13,10 @@
 #include <snorlax.h>
 
 struct internet_protocol_version6;
+struct internet_protocol_version6_option;
 
 typedef struct internet_protocol_version6 internet_protocol_version6_t;
+typedef struct internet_protocol_version6_option internet_protocol_version6_option_t;
 
 struct internet_protocol_version6 {
     uint32_t  prefix;
@@ -25,9 +27,14 @@ struct internet_protocol_version6 {
     uint16_t destination[8];
 };
 
+struct internet_protocol_version6_option {
+    uint8_t type;
+    uint8_t len;
+};
+
 #define internet_protocol_version6_traffic_class_get(prefix)        (((prefix) & 0x0FF00000u) >> 20u)
 #define internet_protocol_version6_flow_label_get(prefix)           ((prefix) & 0x000FFFFFu)
-#define internet_protocol_version6_length_get(datagram)             ntohs((internet_protocol_version6_t *)(datagram)->length)
+#define internet_protocol_version6_length_get(datagram)             (ntohs((internet_protocol_version6_t *)(datagram)->length) + sizeof(internet_protocol_version6_t))
 
 #ifndef   RELEASE
 extern void internet_protocol_version6_debug(FILE * stream, const uint8_t * datagram);
