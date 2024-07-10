@@ -49,6 +49,8 @@ struct internet_protocol_version4_pseudo {
 #define internet_protocol_version4_header_length_get(datagram)      (((internet_protocol_version4_t *) datagram)->length * 4)
 #define internet_protocol_version4_segment_get(datagram)            (&((uint8_t *) datagram)[internet_protocol_version4_header_length_get(datagram)])
 
+#define internet_protocol_version4_length_get(datagram)             (0)
+
 #ifndef   RELEASE
 extern void internet_protocol_version4_debug(FILE * stream, const uint8_t * datagram);
 #endif // RELEASE

@@ -26,6 +26,10 @@ typedef uint8_t                 internet_protocol_t;
 #define internet_protocol_version_get(datagram)         (datagram[0] & (0x0Fu))
 #endif // __BYTE_ORDER == __LITTLE_ENDIAN
 
+extern uint32_t internet_protocol_length_get(internet_protocol_t * datagram);
+
+// #define internet_protocol_length_get(datagram)          
+
 #ifndef   RELEASE
 extern void internet_protocol_debug(FILE * stream, const uint8_t * datagram);
 #endif // RELEASE
