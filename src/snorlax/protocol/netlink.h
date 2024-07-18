@@ -10,6 +10,8 @@
 #ifndef   __SNORLAX__PROTOCOL_NETLINK__H__
 #define   __SNORLAX__PROTOCOL_NETLINK__H__
 
+#include <linux/netlink.h>
+
 #include <snorlax.h>
 
 #endif // __SNORLAX__PROTOCOL_NETLINK__H__
