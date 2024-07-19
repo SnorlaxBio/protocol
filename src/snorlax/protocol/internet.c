@@ -1,3 +1,5 @@
+#include <arpa/inet.h>
+
 #include "internet.h"
 
 #include "internet/version4.h"
