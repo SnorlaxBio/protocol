@@ -49,6 +49,8 @@ set(SNORLAX_PROTOCOL_USER_DATAGRAM_SOURCE               src/snorlax/protocol/use
 set(SNORLAX_PROTOCOL_USER_DATAGRAM_HEADER               src/snorlax/protocol/user-datagram.h)
 set(SNORLAX_PROTOCOL_ADDRESS_RESOLUTION_SOURCE          src/snorlax/protocol/address-resolution.c)
 set(SNORLAX_PROTOCOL_ADDRESS_RESOLUTION_HEADER          src/snorlax/protocol/address-resolution.h)
+set(SNORLAX_PROTOCOL_EXTERIOR_GATEWAY_SOURCE            src/snorlax/protocol/exterior/gateway.c)
+set(SNORLAX_PROTOCOL_EXTERIOR_GATEWAY_HEADER            src/snorlax/protocol/exterior/gateway.h)
 
 add_library(snorlax-protocol-ethernet ${SNORLAX_PROTOCOL_ETHERNET_SOURCE} ${SNORLAX_PROTOCOL_ETHERNET_HEADER})
 target_compile_options(snorlax-protocol-ethernet PUBLIC "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
@@ -74,6 +76,8 @@ target_compile_options(snorlax-protocol-user-datagram PUBLIC "-ffile-prefix-map=
 add_library(snorlax-protocol-address-resolution ${SNORLAX_PROTOCOL_ADDRESS_RESOLUTION_SOURCE} ${SNORLAX_PROTOCOL_ADDRESS_RESOLUTION_HEADER})
 target_compile_options(snorlax-protocol-address-resolution PUBLIC "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
 
+add_library(snorlax-protocol-exterior-gateway ${SNORLAX_PROTOCOL_EXTERIOR_GATEWAY_SOURCE} ${SNORLAX_PROTOCOL_EXTERIOR_GATEWAY_HEADER})
+target_compile_options(snorlax-protocol-exterior-gateway PUBLIC "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
 
 add_library(snorlax-protocol STATIC ${SNORLAX_PROTOCOL_SOURCE} ${SNORLAX_PROTOCOL_HEADER}
                                     $<TARGET_OBJECTS:snorlax-protocol-user-datagram>
@@ -83,7 +87,8 @@ add_library(snorlax-protocol STATIC ${SNORLAX_PROTOCOL_SOURCE} ${SNORLAX_PROTOCO
                                     $<TARGET_OBJECTS:snorlax-protocol-internet-version4>
                                     $<TARGET_OBJECTS:snorlax-protocol-internet>
                                     $<TARGET_OBJECTS:snorlax-protocol-address-resolution>
-                                    $<TARGET_OBJECTS:snorlax-protocol-ethernet>)
+                                    $<TARGET_OBJECTS:snorlax-protocol-ethernet>
+                                    $<TARGET_OBJECTS:snorlax-protocol-exterior-gateway>)
 target_compile_options(snorlax-protocol PUBLIC "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
 
 install(TARGETS snorlax-protocol ARCHIVE DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")

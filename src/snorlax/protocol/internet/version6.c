@@ -1,7 +1,9 @@
 #include <arpa/inet.h>
 
+#include "../number.h"
 #include "version6.h"
 #include "../internet.h"
+#include "../exterior/gateway.h"
 
 #ifndef   RELEASE
 extern void internet_protocol_version6_debug(FILE * stream, const uint8_t * datagram) {
@@ -34,7 +36,12 @@ extern void internet_protocol_version6_debug(FILE * stream, const uint8_t * data
                                                                   ntohs(internet->destination[7]));
     fprintf(stream, "|\n");
 
-    snorlaxdbg(false, true, "check", "");
+    switch(internet->next) {
+        case protocol_number_exterior_gateway:      exterior_gateway_protocol_message_debug(stream, datagram);      break;
+        default:                                    snorlaxdbg(false, true, "check", "");                           break;
+    }
+
+    
 }
 #endif // RELEASE
 
