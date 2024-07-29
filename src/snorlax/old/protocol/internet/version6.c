@@ -1,9 +1,39 @@
 #include <arpa/inet.h>
+#include <string.h>
 
 #include "../number.h"
 #include "version6.h"
 #include "../internet.h"
 #include "../exterior/gateway.h"
+
+extern int32_t internet_protocol_version6_source_address_determine(const uint16_t * source, uint64_t * result) {
+#ifndef   RELEASE
+    snorlaxdbg(source == nil, false, "critical", "");
+    snorlaxdbg(result == nil, false, "critical", "");
+#endif // RELEASE
+
+    if(memcmp(internet_protocol_version6_address_unspecified, source, sizeof(uint16_t) * 8) == 0) {
+        snorlaxdbg(true, false, "implement", "");
+        
+        return fail;
+    } else if(memcmp(internet_protocol_version6_address_loopback, source, sizeof(uint16_t) * 8) == 0) {
+        snorlaxdbg(true, false, "implement", "");
+
+        return fail;
+    } else if(source[0] & 0xFF00 == 0xFF00) {
+        snorlaxdbg(true, false, "implement", "");
+
+        return fail;
+    } else if(source[0] & 0xFF80 == 0xFE80) {
+        snorlaxdbg(true, false, "implement", "");
+
+        return fail;
+    }
+
+    memcpy(result, source, sizeof(uint16_t) * 8);
+
+    return success;
+}
 
 #ifndef   RELEASE
 extern void internet_protocol_version6_debug(FILE * stream, const uint8_t * datagram) {

@@ -4,34 +4,42 @@
  * @details
  * 
  * @author      snorlax <ceo@snorlax.bio>
- * @since       July 4, 2024
+ * @since       July 27, 2024
  */
 
 #ifndef   __SNORLAX__PROTOCOL_INTERNET__H__
 #define   __SNORLAX__PROTOCOL_INTERNET__H__
 
 #include <snorlax.h>
+#include <snorlax/protocol/module.h>
 
-#define internet_protocol_type_icmp         1
+struct internet_protocol;
 
-#define internet_protocol_type_tcp          6
+typedef struct internet_protocol internet_protocol_t;
 
-#define internet_protocol_type_udp          17
+struct internet_protocol_module;
+struct internet_protocol_module_func;
 
-typedef uint8_t                 internet_protocol_t;
+typedef struct internet_protocol_module internet_protocol_module_t;
+typedef struct internet_protocol_module_func internet_protocol_module_func_t;
 
-#if       __BYTE_ORDER == __LITTLE_ENDIAN
-#define internet_protocol_version_get(datagram)         (datagram[0] >> 4)
-#else
-#define internet_protocol_version_get(datagram)         (datagram[0] & (0x0Fu))
-#endif // __BYTE_ORDER == __LITTLE_ENDIAN
+struct internet_protocol {
+    uint8_t prefix;
+};
 
-extern uint32_t internet_protocol_length_get(internet_protocol_t * datagram);
+// interface ... 
+struct internet_protocol_module {
+    internet_protocol_module_func_t * func;
+    sync_t * sync;
+    protocol_module_t * parent;
+    protocol_module_map_t * map;
+};
 
-// #define internet_protocol_length_get(datagram)          
+struct internet_protocol_module_func {
+    internet_protocol_module_t * (*rem)(internet_protocol_module_t *);
+    int32_t (*validate)(internet_protocol_module_t *, const internet_protocol_t *, uint32_t);
+    void (*debug)(internet_protocol_module_t *, FILE *, const internet_protocol_t *);
+};
 
-#ifndef   RELEASE
-extern void internet_protocol_debug(FILE * stream, const uint8_t * datagram);
-#endif // RELEASE
 
 #endif // __SNORLAX__PROTOCOL_INTERNET__H__
